@@ -1,0 +1,154 @@
+body {
+    background-color: #efe6f4ef !important;
+}
+
+p {
+    font-family: cursive;
+}
+
+
+
+.navbar {
+
+    /* light blue */
+    display: flex;
+    justify-content: space-between;
+    /* added to align navbar text horizontally */
+    align-items: center;
+    /* added to align navbar text vertically */
+}
+
+.bg-light {
+    background-color: #e7d6f5;
+}
+
+.navbar-light .navbar-brand {
+    color: rgba(0, 0, 0, .9);
+    margin-left: 50px;
+    font-weight: 500;
+}
+
+.navbar span {
+    margin-left: 0;
+    /* removed margin to align with other items */
+}
+
+.carousel-inner img {
+    height: 290px;
+    width: 1440px;
+    object-fit: cover;
+}
+
+.card {
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+#about-us,
+#smart-cart,
+#contact-us {
+    margin-top: 20px;
+    font-weight: 650;
+
+}
+
+/* added styles for cart */
+.cart {
+    background-color: #f3edf9;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    /* added to make cart wider */
+    margin: 40px auto;
+    /* added to center cart horizontally */
+}
+
+.cart-header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.cart-header h2 {
+    margin-top: 0;
+}
+
+.cart-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.cart-list li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    /* added to align product info horizontally */
+    justify-content: space-between;
+    /* added to align product info horizontally */
+}
+
+.cart-list li:last-child {
+    border-bottom: none;
+}
+
+.cart-total {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    border-top: 1px solid #ddd;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.cart-item {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.cart-item:last-child {
+    border-bottom: none;
+}
+
+.cart-item .product-name {
+    font-weight: bold;
+}
+
+.cart-item .product-description {
+    font-size: 14px;
+    color: #666;
+}
+
+.cart-item .price {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333333;
+}
+
+
+/* added styles for BUY button */
+.buy-button {
+    background-color: #c4b5d7;
+    color: #06010eda;
+    padding: 10px 20px;
+    border: none;
+    border-color: #1d063d;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    /* added to make button text larger */
+    font-weight: bold;
+    /* added to make button text bold */
+}
+
+.buy-button:hover {
+    background-color: #a8a5aa;
+}
+
+.card-text {
+
+    text-wrap: wrap;
+}
