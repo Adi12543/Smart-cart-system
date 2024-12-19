@@ -10,8 +10,14 @@ arduino = None
 def init_serial():
     global arduino
     print("Initializing serial connection...")
-    arduino = serial.Serial('COM7', 9600, timeout=1)  # Ensure this COM port is correct for your setup
-    time.sleep(2)  # Give time for the connection to stabilize
+    try:
+        arduino = serial.Serial('COM4', 9600, timeout=1)  # Replace 'COM4' with your actual port
+        time.sleep(2)  # Give time for the connection to stabilize
+        return True  # Indicate successful initialization
+    except serial.SerialException as e:
+        print(f"Error initializing serial connection: {e}")
+        # Handle the error gracefully (e.g., display an error message to the user)
+        return False 
 
 @app.teardown_appcontext
 def close_serial(exception):
@@ -38,13 +44,15 @@ def index():
 def add_to_cart():
     global arduino
     if arduino is None or not arduino.is_open:
-        init_serial()
+        if not init_serial(): 
+            return jsonify({'error': 'Could not connect to Arduino.'}), 500 
 
     scanned_code = request.form['scanned_code']
     if scanned_code in products:
         cart.append(products[scanned_code])
         print(f"Sending 'C' to Arduino for product {scanned_code}.")  # Debug print
-        arduino.write(b'C')  # Send 'C' to Arduino
+        if arduino and arduino.is_open:  # Check if connection is open before writing
+            arduino.write(b'C')
         time.sleep(1)  # Ensure data transmission time
         return jsonify({'cart': cart})
     else:
@@ -58,9 +66,12 @@ def delete_from_cart():
         if item['Product ID'] == item_id:
             cart.remove(item)
             if arduino is None or not arduino.is_open:
-                init_serial()
+                if not init_serial(): 
+                    return jsonify({'error': 'Could not connect to Arduino.'}), 500 
+
             print(f"Sending '0' to Arduino for item {item_id}.")  # Debug print
-            arduino.write(b'0')  # Send '0' to Arduino
+            if arduino and arduino.is_open:  # Check if connection is open before writing
+                arduino.write(b'0')
             time.sleep(1)  # Ensure data transmission time
             break
     return jsonify({'cart': cart})
